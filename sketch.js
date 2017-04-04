@@ -1,18 +1,14 @@
-    var box_x = 50;
-
     function setup() {
         createCanvas(displayWidth, displayHeight, WEBGL);
-        box_x = -400;
+        //controls options : wasd, ARROWS, ijkl, 8456
+        blueBox = new Bike("Blue", "ARROWS");
     }
 
     function draw() {
         background(0);
-        box_x++;
         setCamera(70.0, 200.0, 120.0, 50.0, 50.0, 0.0, 0.0, 1.0, 0.0, 50, 50, 50, -PI / 6);
         setPlane(153, 172, 204, 1000);
-        fill(255);
-        translate(box_x, 0, 100);
-        box(100, 50, -50);
+        blueBox.display();
     }
 
     function setCamera(eyeX, eyeY, eyeZ, ceneterX, centerY, centerZ, upX, upY, upZ, t1, t2, t3, rotation) {
@@ -26,8 +22,9 @@
         plane(size);
     }
 
-    function Bike(c) {
+    function Bike(c, controls) {
         this.c = c;
+        this.controls = controls;
         var c1;
         var c2;
         var c3;
@@ -74,8 +71,42 @@
             rotateX(rads);
             box(bikeHeight, bikeWidth);
         }
-        this.move = function () {}
-        this.collisions = function () {}
+        this.move = function () {
+            if (this.controls == "ARROWS") {
+                function keyPressed() {
+                    if (keyCode == UP_ARROW) {}
+                    else if (keyCode == DOWN_ARROW) {}
+                    else if (keyCode == LEFT_ARROW) {}
+                    else if (keyCode == RIGHT_ARROW) {}
+                }
+            }
+            if (this.controls == "wasd") {
+                function keyPressed() {
+                    if (keyCode == UP_ARROW) {}
+                    else if (keyCode == DOWN_ARROW) {}
+                    else if (keyCode == LEFT_ARROW) {}
+                    else if (keyCode == RIGHT_ARROW) {}
+                }
+            }
+            if (this.controls == "ijkl") {
+                function keyPressed() {
+                    if (keyCode == UP_ARROW) {}
+                    else if (keyCode == DOWN_ARROW) {}
+                    else if (keyCode == LEFT_ARROW) {}
+                    else if (keyCode == RIGHT_ARROW) {}
+                }
+            }
+            if (this.controls == "8456") {
+                function keyPressed() {
+                    if (keyCode == UP_ARROW) {}
+                    else if (keyCode == DOWN_ARROW) {}
+                    else if (keyCode == LEFT_ARROW) {}
+                    else if (keyCode == RIGHT_ARROW) {}
+                }
+            }
+        };
+        this.collisions = function () {};
+        this.lose = function () {};
     }
 
     function Barrier(x, y, w, h) {
@@ -83,7 +114,7 @@
         this.y = y;
         this.w = w;
         this.h = h;
-        this.display = function () {}
-        this.move = function () {}
-        this.collisions = function () {}
+        this.display = function () {};
+        this.move = function () {};
+        this.collisions = function () {};
     }

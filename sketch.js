@@ -74,34 +74,66 @@
         this.move = function () {
             if (this.controls == "ARROWS") {
                 function keyPressed() {
-                    if (keyCode == UP_ARROW) {}
-                    else if (keyCode == DOWN_ARROW) {}
-                    else if (keyCode == LEFT_ARROW) {}
-                    else if (keyCode == RIGHT_ARROW) {}
+                    if (keyCode == UP_ARROW) {
+
+                    }
+                    else if (keyCode == LEFT_ARROW) {
+
+                    }
+                    else if (keyCode == DOWN_ARROW) {
+
+                    }
+                    else if (keyCode == RIGHT_ARROW) {
+
+                    }
                 }
             }
             if (this.controls == "wasd") {
                 function keyPressed() {
-                    if (keyCode == UP_ARROW) {}
-                    else if (keyCode == DOWN_ARROW) {}
-                    else if (keyCode == LEFT_ARROW) {}
-                    else if (keyCode == RIGHT_ARROW) {}
+                    if (keyCode == 87) {
+
+                    }
+                    else if (keyCode == 65) {
+
+                    }
+                    else if (keyCode == 83) {
+
+                    }
+                    else if (keyCode == 68) {
+
+                    }
                 }
             }
             if (this.controls == "ijkl") {
                 function keyPressed() {
-                    if (keyCode == UP_ARROW) {}
-                    else if (keyCode == DOWN_ARROW) {}
-                    else if (keyCode == LEFT_ARROW) {}
-                    else if (keyCode == RIGHT_ARROW) {}
+                    if (keyCode == 73) {
+
+                    }
+                    else if (keyCode == 74) {
+
+                    }
+                    else if (keyCode == 75) {
+
+                    }
+                    else if (keyCode == 76) {
+
+                    }
                 }
             }
             if (this.controls == "8456") {
                 function keyPressed() {
-                    if (keyCode == UP_ARROW) {}
-                    else if (keyCode == DOWN_ARROW) {}
-                    else if (keyCode == LEFT_ARROW) {}
-                    else if (keyCode == RIGHT_ARROW) {}
+                    if (keyCode == 104) {
+
+                    }
+                    else if (keyCode == 100) {
+
+                    }
+                    else if (keyCode == 101) {
+
+                    }
+                    else if (keyCode == 102) {
+
+                    }
                 }
             }
         };

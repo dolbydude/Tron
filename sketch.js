@@ -30,6 +30,8 @@
         var c3;
         var translationX;
         var translationY;
+        var xVelocity;
+        var yVelocity;
         var rads;
         var bikeHeight = 50;
         var bikeWidth = 25;
@@ -40,6 +42,8 @@
             translationX = 0;
             translationY = 0;
             rads = 0;
+            xVelocity = 0;
+            yVelocity = 0;
         }
         if (this.c == "Red") {
             c1 = 255;
@@ -48,6 +52,8 @@
             translationX = 0;
             translationY = 0;
             rads = 0;
+            xVelocity = 0;
+            yVelocity = 0;
         }
         if (this.c == "White") {
             c1 = 255;
@@ -56,6 +62,8 @@
             translationX = 0;
             translationY = 0;
             rads = 0;
+            xVelocity = 0;
+            yVelocity = 0;
         }
         if (this.c == "Blue") {
             c1 = 0;
@@ -64,6 +72,8 @@
             translationX = 0;
             translationY = 0;
             rads = 0;
+            xVelocity = 0;
+            yVelocity = 0;
         }
         this.display = function () {
             fill(c1, c2, c3);
@@ -75,64 +85,96 @@
             if (this.controls == "ARROWS") {
                 function keyPressed() {
                     if (keyCode == UP_ARROW) {
-
+                        rads = HALF_PI;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                     else if (keyCode == LEFT_ARROW) {
-
+                        rads = PI;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                     else if (keyCode == DOWN_ARROW) {
-
+                        rads = PI+HALF_PI;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                     else if (keyCode == RIGHT_ARROW) {
-
+                        rads = 0;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                 }
             }
             if (this.controls == "wasd") {
                 function keyPressed() {
                     if (keyCode == 87) {
-
+                        rads = HALF_PI;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                     else if (keyCode == 65) {
-
+                        rads = PI;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                     else if (keyCode == 83) {
-
+                        rads = PI+HALF_PI;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                     else if (keyCode == 68) {
-
+                        rads = 0;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                 }
             }
             if (this.controls == "ijkl") {
                 function keyPressed() {
                     if (keyCode == 73) {
-
+                        rads = HALF_PI;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                     else if (keyCode == 74) {
-
+                        rads = PI;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                     else if (keyCode == 75) {
-
+                        rads = PI+HALF_PI;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                     else if (keyCode == 76) {
-
+                        rads = 0;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                 }
             }
             if (this.controls == "8456") {
                 function keyPressed() {
                     if (keyCode == 104) {
-
+                        rads = HALF_PI;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                     else if (keyCode == 100) {
-
+                        rads = PI;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                     else if (keyCode == 101) {
-
+                        rads = PI+HALF_PI;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                     else if (keyCode == 102) {
-
+                        rads = 0;
+                        xVelocity = 0;
+                        yVelocity = 0;
                     }
                 }
             }

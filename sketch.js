@@ -1,198 +1,202 @@
-    function setup() {
-        createCanvas(displayWidth - displayWidth / 5, displayHeight - displayHeight / 5, WEBGL);
-        //controls options : wasd, ARROWS, ijkl, 8456
-        blueBox = new Bike("Blue", "ARROWS");
-    }
+var canvasWidth;
+var canvasHeight;
+var planeSize;
+var cornerValue;
+var blueBox;
+var whiteBox;
+var redBox;
+var greenBox;
 
-    function draw() {
-        background(0);
-        setCamera(70.0, 200.0, 120.0, 50.0, 50.0, 0.0, 0.0, 1.0, 0.0, 50, 50, 50, -PI / 6);
-        setPlane(153, 172, 204, 1000);
-        blueBox.move();
-        blueBox.display();
-    }
+function setup() {
+    frameRate(60);
+    canvasWidth = (displayWidth - displayWidth / 80);
+    canvasHeight = (displayHeight - displayHeight / 7);
+    planeSize = displayHeight * (.9);
+    cornerValue = planeSize * (.4);
+    createCanvas(canvasWidth, canvasHeight, WEBGL);
+    //controls options : wasd, ARROWS, ijkl, 8456
+    blueBox = new Bike("Blue", "ARROWS");
+    whiteBox = new Bike("White", "wasd");
+    redBox = new Bike("Red", "ijkl");
+    greenBox = new Bike("Green", "8456");
+}
 
-    function setCamera(eyeX, eyeY, eyeZ, ceneterX, centerY, centerZ, upX, upY, upZ, t1, t2, t3, rotation) {
-        camera(eyeX, eyeY, eyeZ, ceneterX, centerY, centerZ, upX, upY, upZ);
-        translate(t1, t2, t3);
-        rotateX(rotation);
-    }
+function draw() {
+    background(0);
+    setCamera(70.0, 200.0, 120.0, 50.0, 50.0, 0.0, 0.0, 1.0, 0.0, 50, canvasHeight - canvasHeight * (.9), canvasHeight - canvasHeight * (.85), -PI / 6);
+    setPlane(153, 172, 204, planeSize);
+    blueBox.move();
+    blueBox.display();
+    whiteBox.move();
+    whiteBox.display();
+    greenBox.move();
+    greenBox.display();
+    redBox.move();
+    redBox.display();
+}
 
-    function setPlane(c1, c2, c3, size) {
-        fill(c1, c2, c3);
-        plane(size);
-    }
+function setCamera(eyeX, eyeY, eyeZ, ceneterX, centerY, centerZ, upX, upY, upZ, t1, t2, t3, rotation) {
+    camera(eyeX, eyeY, eyeZ, ceneterX, centerY, centerZ, upX, upY, upZ);
+    translate(t1, t2, t3);
+    rotateX(rotation);
+};
 
-    function Bike(c, controls) {
-        this.c = c;
-        this.controls = controls;
-        var c1;
-        var c2;
-        var c3;
-        var translationX;
-        var translationY;
-        var xVelocity;
-        var yVelocity;
-        var rads;
-        var bikeHeight = 50;
-        var bikeWidth = 25;
-        if (this.c == "Green") {
-            c1 = 0;
-            c2 = 255;
-            c3 = 0;
-            translationX = -450;
-            translationY = 450;
-            rads = 0;
-            xVelocity = 3;
-            yVelocity = 0;
-        }
-        if (this.c == "Red") {
-            c1 = 255;
-            c2 = 0;
-            c3 = 0;
-            translationX = 450;
-            translationY = 450;
-            rads = PI;
-            xVelocity = -3;
-            yVelocity = 0;
-        }
-        if (this.c == "White") {
-            c1 = 255;
-            c2 = 255;
-            c3 = 255;
-            translationX = 450;
-            translationY = -450;
-            rads = PI;
-            xVelocity = -3;
-            yVelocity = 0;
-        }
-        if (this.c == "Blue") {
-            c1 = 0;
-            c2 = 0;
-            c3 = 255;
-            translationX = -450;
-            translationY = -450;
-            rads = 0;
-            xVelocity = 3;
-            yVelocity = 0;
-        }
-        this.display = function () {
-            fill(c1, c2, c3);
-            translate(translationX, translationY);
-            //need two rad values, x and y, to turn the bike
-            rotateX(rads);
-            box(bikeHeight, bikeWidth);
-        }
-        this.move = function () {
-            translationX = translationX + xVelocity;
-            translationY = translationY + yVelocity;
-            if (this.controls == "ARROWS") {
-              //  function keyPressed() {
-                    if (keyCode == UP_ARROW) {
-                        rads = HALF_PI;
-                        xVelocity = 0;
-                        yVelocity = -3;
-                    }
-                    else if (keyCode == LEFT_ARROW) {
-                        rads = PI;
-                        xVelocity = -3;
-                        yVelocity = 0;
-                    }
-                    else if (keyCode == DOWN_ARROW) {
-                        rads = PI + HALF_PI;
-                        xVelocity = 0;
-                        yVelocity = 3;
-                    }
-                    else if (keyCode == RIGHT_ARROW) {
-                        rads = 0;
-                        xVelocity = 3;
-                        yVelocity = 0;
-                    }
-             //   }
+function setPlane(c1, c2, c3, size) {
+    fill(c1, c2, c3);
+    plane(size);
+};
+
+function Bike(c, controls) {
+    this.c = c;
+    this.controls = controls;
+    if (this.c == "Green") {
+        this.c1 = 0;
+        this.c2 = 255;
+        this.c3 = 0;
+        this.translationX = cornerValue;
+        this.translationY = cornerValue;
+        this.rads = 0;
+        this.xVelocity = 3;
+        this.yVelocity = 0;
+    }
+    if (this.c == "Red") {
+        this.c1 = 255;
+        this.c2 = 0;
+        this.c3 = 0;
+        this.translationX = cornerValue;
+        this.translationY = -cornerValue;
+        this.rads = PI;
+        this.xVelocity = -3;
+        this.yVelocity = 0;
+    }
+    if (this.c == "White") {
+        this.c1 = 255;
+        this.c2 = 255;
+        this.c3 = 255;
+        this.translationX = cornerValue;
+        this.translationY = -cornerValue;
+        this.rads = PI;
+        this.xVelocity = -3;
+        this.yVelocity = 0;
+    }
+    if (this.c == "Blue") {
+        this.c1 = 0;
+        this.c2 = 0;
+        this.c3 = 255;
+        this.translationX = -cornerValue;
+        this.translationY = -cornerValue;
+        this.rads = 0;
+        this.xVelocity = 3;
+        this.yVelocity = 0;
+    }
+    this.display = function () {
+        fill(this.c1, this.c2, this.c3);
+        translate(this.translationX, this.translationY, 5);
+        rotateZ(this.rads);
+        box(30, 10, 10);
+    }
+    this.move = function () {
+        this.translationX = this.translationX + this.xVelocity;
+        this.translationY = this.translationY + this.yVelocity;
+        if (this.controls == "ARROWS") {
+            if (keyCode == UP_ARROW) {
+                this.rads = HALF_PI;
+                this.xVelocity = 0;
+                this.yVelocity = -3;
             }
-            if (this.controls == "wasd") {
-                function keyPressed() {
-                    if (keyCode == 87) {
-                        rads = HALF_PI;
-                        xVelocity = 0;
-                        yVelocity = -3;
-                    }
-                    else if (keyCode == 65) {
-                        rads = PI;
-                        xVelocity = -3;
-                        yVelocity = 0;
-                    }
-                    else if (keyCode == 83) {
-                        rads = PI + HALF_PI;
-                        xVelocity = 0;
-                        yVelocity = 3;
-                    }
-                    else if (keyCode == 68) {
-                        rads = 0;
-                        xVelocity = 3;
-                        yVelocity = 0;
-                    }
-                }
+            else if (keyCode == LEFT_ARROW) {
+                this.rads = PI;
+                this.xVelocity = -3;
+                this.yVelocity = 0;
             }
-            if (this.controls == "ijkl") {
-                function keyPressed() {
-                    if (keyCode == 73) {
-                        rads = HALF_PI;
-                        xVelocity = 0;
-                        yVelocity = -3;
-                    }
-                    else if (keyCode == 74) {
-                        rads = PI;
-                        xVelocity = -3;
-                        yVelocity = 0;
-                    }
-                    else if (keyCode == 75) {
-                        rads = PI + HALF_PI;
-                        xVelocity = 0;
-                        yVelocity = 3;
-                    }
-                    else if (keyCode == 76) {
-                        rads = 0;
-                        xVelocity = 3;
-                        yVelocity = 0;
-                    }
-                }
+            else if (keyCode == DOWN_ARROW) {
+                this.rads = PI + HALF_PI;
+                this.xVelocity = 0;
+                this.yVelocity = 3;
             }
-            if (this.controls == "8456") {
-                function keyPressed() {
-                    if (keyCode == 104) {
-                        rads = HALF_PI;
-                        xVelocity = 0;
-                        yVelocity = -3;
-                    }
-                    else if (keyCode == 100) {
-                        rads = PI;
-                        xVelocity = -3;
-                        yVelocity = 0;
-                    }
-                    else if (keyCode == 101) {
-                        rads = PI + HALF_PI;
-                        xVelocity = 0;
-                        yVelocity = 3;
-                    }
-                    else if (keyCode == 102) {
-                        rads = 0;
-                        xVelocity = 3;
-                        yVelocity = 0;
-                    }
-                }
+            else if (keyCode == RIGHT_ARROW) {
+                this.rads = 0;
+                this.xVelocity = 3;
+                this.yVelocity = 0;
             }
-        };
-        this.collisions = function () {};
-        this.lose = function () {};
-    }
+        }
+        if (this.controls == "wasd") {
+            if (keyCode == 87) {
+                this.rads = HALF_PI;
+                this.xVelocity = 0;
+                this.yVelocity = -3;
+            }
+            else if (keyCode == 65) {
+                this.rads = PI;
+                this.xVelocity = -3;
+                this.yVelocity = 0;
+            }
+            else if (keyCode == 83) {
+                this.rads = PI + HALF_PI;
+                this.xVelocity = 0;
+                this.yVelocity = 3;
+            }
+            else if (keyCode == 68) {
+                this.rads = 0;
+                this.xVelocity = 3;
+                this.yVelocity = 0;
+            }
+        }
+        if (this.controls == "ijkl") {
+            if (keyCode == 73) {
+                this.rads = HALF_PI;
+                this.xVelocity = 0;
+                this.yVelocity = -3;
+            }
+            else if (keyCode == 74) {
+                this.rads = PI;
+                this.xVelocity = -3;
+                this.yVelocity = 0;
+            }
+            else if (keyCode == 75) {
+                this.rads = PI + HALF_PI;
+                this.xVelocity = 0;
+                this.yVelocity = 3;
+            }
+            else if (keyCode == 76) {
+                this.rads = 0;
+                this.xVelocity = 3;
+                this.yVelocity = 0;
+            }
+        }
+        if (this.controls == "8456") {
+            if (keyCode == 104) {
+                this.rads = HALF_PI;
+                this.xVelocity = 0;
+                this.yVelocity = -3;
+            }
+            else if (keyCode == 100) {
+                this.rads = PI;
+                this.xVelocity = -3;
+                this.yVelocity = 0;
+            }
+            else if (keyCode == 101) {
+                this.rads = PI + HALF_PI;
+                this.xVelocity = 0;
+                this.yVelocity = 3;
+            }
+            else if (keyCode == 102) {
+                this.rads = 0;
+                this.xVelocity = 3;
+                this.yVelocity = 0;
+            }
+        }
+    };
+    this.collisions = function () {};
+    this.lose = function () {};
+};
 
-    function Barrier(x, y, w, h) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-        this.display = function () {};
-        this.move = function () {};
-        this.collisions = function () {};
-    }
+function Barrier(x, y, w, h) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.display = function () {};
+    this.move = function () {};
+    this.collisions = function () {};
+};

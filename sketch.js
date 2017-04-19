@@ -3,8 +3,8 @@ var canvasHeight;
 var planeSize;
 var cornerValue;
 var blueBox;
-var whiteBox;
-var redBox;
+//var whiteBox;
+//var redBox;
 var greenBox;
 var barriers = [];
 
@@ -17,8 +17,8 @@ function setup() {
     createCanvas(canvasWidth, canvasHeight, WEBGL);
     //   controls options : wasd, ARROWS, ijkl, 8456
     blueBox = new Bike("Blue", 1);
-    whiteBox = new Bike("White", 2);
-    redBox = new Bike("Red", 3);
+    //whiteBox = new Bike("White", 2);
+    //redBox = new Bike("Red", 3);
     greenBox = new Bike("Green", 4);
 }
 
@@ -28,12 +28,12 @@ function draw() {
     setPlane(153, 172, 204, planeSize);
     blueBox.move();
     blueBox.display();
-    whiteBox.move();
-    whiteBox.display();
+    //whiteBox.move();
+    //whiteBox.display();
     greenBox.move();
     greenBox.display();
-    redBox.move();
-    redBox.display();
+    //redBox.move();
+    //redBox.display();
 }
 
 function setCamera(eyeX, eyeY, eyeZ, ceneterX, centerY, centerZ, upX, upY, upZ, t1, t2, t3, rotation) {
@@ -118,126 +118,142 @@ function Bike(c, controls) {
             barriers[i].display();
         }
         if (this.controls == 1) {
-            if (keyCode == UP_ARROW && this.yVelocity != -3) {
+            if (keyCode == UP_ARROW && this.m == "horizontal") {
                 this.rads = HALF_PI;
                 this.xVelocity = 0;
                 this.yVelocity = -3;
-                this.m = "verticle";
                 this.turnCount = this.turnCount++;
+                this.m = "verticle";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
-            else if (keyCode == LEFT_ARROW && this.xVelocity != -3) {
+            if (keyCode == LEFT_ARROW && this.m == "verticle") {
                 this.rads = PI;
                 this.xVelocity = -3;
                 this.yVelocity = 0;
-                this.m = "horizontal";
                 this.turnCount = this.turnCount++;
+                this.m = "horizontal";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
-            else if (keyCode == DOWN_ARROW && this.yVelocity != 3) {
+            if (keyCode == DOWN_ARROW && this.m == "horizontal") {
                 this.rads = PI + HALF_PI;
                 this.xVelocity = 0;
                 this.yVelocity = 3;
-                this.m = "verticle";
                 this.turnCount = this.turnCount++;
+                this.m = "verticle";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
-            else if (keyCode == RIGHT_ARROW && this.xVelocity != 3) {
+            if (keyCode == RIGHT_ARROW && this.m == "verticle") {
                 this.rads = 0;
                 this.xVelocity = 3;
                 this.yVelocity = 0;
-                this.m = "horizontal";
                 this.turnCount = this.turnCount++;
+                this.m = "horizontal";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
         }
         //wasd
-        else if (this.controls == 2 && this.yVelocity != -3) {
+        if (this.controls == 2 && this.m == "horizontal") {
             if (keyCode == 87) {
                 this.rads = HALF_PI;
                 this.xVelocity = 0;
                 this.yVelocity = -3;
-                this.m = "verticle";
                 this.turnCount = this.turnCount++;
+                this.m = "verticle";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
-            else if (keyCode == 65 && this.xVelocity != -3) {
+            if (keyCode == 65 && this.m == "verticle") {
                 this.rads = PI;
                 this.xVelocity = -3;
                 this.yVelocity = 0;
-                this.m = "horizontal";
                 this.turnCount = this.turnCount++;
+                this.m = "horizontal";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
-            else if (keyCode == 83 && this.yVelocity != 3) {
+            if (keyCode == 83 && this.m == "horizontal") {
                 this.rads = PI + HALF_PI;
                 this.xVelocity = 0;
                 this.yVelocity = 3;
-                this.m = "verticle";
                 this.turnCount = this.turnCount++;
+                this.m = "verticle";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
-            else if (keyCode == 68 && this.xVelocity != 3) {
+            if (keyCode == 68 && this.m == "verticle") {
                 this.rads = 0;
                 this.xVelocity = 3;
                 this.yVelocity = 0;
-                this.m = "horizontal";
                 this.turnCount = this.turnCount++;
+                this.m = "horizontal";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
         }
         //yghj
-        else if (this.controls == 3 && this.yVelocity != -3) {
+        if (this.controls == 3 && this.m == "horizontal") {
             if (keyCode == 89) {
                 this.rads = HALF_PI;
                 this.xVelocity = 0;
                 this.yVelocity = -3;
-                this.m = "verticle";
                 this.turnCount = this.turnCount++;
+                this.m = "verticle";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
-            else if (keyCode == 71 && this.xVelocity != -3) {
+            if (keyCode == 71 && this.m == "verticle") {
                 this.rads = PI;
                 this.xVelocity = -3;
                 this.yVelocity = 0;
-                this.m = "horizontal";
                 this.turnCount = this.turnCount++;
+                this.m = "horizontal";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
-            else if (keyCode == 72 && this.yVelocity != 3) {
+            if (keyCode == 72 && this.m == "horizontal") {
                 this.rads = PI + HALF_PI;
                 this.xVelocity = 0;
                 this.yVelocity = 3;
-                this.m = "verticle";
                 this.turnCount = this.turnCount++;
+                this.m = "verticle";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
-            else if (keyCode == 74 && this.xVelocity != 3) {
+            if (keyCode == 74 && this.m == "verticle") {
                 this.rads = 0;
                 this.xVelocity = 3;
                 this.yVelocity = 0;
-                this.m = "horizontal";
                 this.turnCount = this.turnCount++;
+                this.m = "horizontal";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
         }
         //numpad
-        else if (this.controls == 4 && this.yVelocity != -3) {
+        if (this.controls == 4 && this.m == "horizontal") {
             if (keyCode == 80) {
                 this.rads = HALF_PI;
                 this.xVelocity = 0;
                 this.yVelocity = -3;
-                this.m = "verticle";
                 this.turnCount = this.turnCount++;
+                this.m = "verticle";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
-            if (keyCode == 76 && this.xVelocity != -3) {
+            if (keyCode == 76 && this.m == "verticle") {
                 this.rads = PI;
                 this.xVelocity = -3;
                 this.yVelocity = 0;
-                this.m = "horizontal";
                 this.turnCount = this.turnCount++;
+                this.m = "horizontal";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
-            if (keyCode == 186 && this.yVelocity != 3) {
+            if (keyCode == 186 && this.m == "horizontal") {
                 this.rads = PI + HALF_PI;
                 this.xVelocity = 0;
                 this.yVelocity = 3;
-                this.m = "verticle";
                 this.turnCount = this.turnCount++;
+                this.m = "verticle";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
-            if (keyCode == 222 && this.xVelocity != 3) {
+            if (keyCode == 222 && this.m == "verticle") {
                 this.rads = 0;
                 this.xVelocity = 3;
                 this.yVelocity = 0;
-                this.m = "horizontal";
                 this.turnCount = this.turnCount++;
+                this.m = "horizontal";
+                barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
             }
         }
         // this.collisions = function () {};
@@ -267,19 +283,19 @@ function Barrier(x, y, c1, c2, c3, rads) {
         rotateZ(this.rads);
         box(length, 10, 10);
         pop();
-    };
+    }
     this.move = function (bikeVelocityX, bikeVelocityY, m) {
-        this.vX = bikeVelocityX / 2;
-        this.vY = bikeVelocityY / 2;
-        this.x = this.x + this.vX;
-        this.y = this.y + this.vY;
+        this.vX = bikeVelocityX;
+        this.vY = bikeVelocityY;
+        this.x = this.x + this.vX / 2;
+        this.y = this.y + this.vY / 2;
         this.movement = m;
         if (this.movement = "verticle") {
-            this.length = this.length + this.vY * (2);
+            this.length = this.length + this.vY;
         }
         if (this.movement = "horizontal") {
-            this.length = this.length + this.vX * (2);
+            this.length = this.length + this.vX;
         }
-    };
+    }
     this.collisions = function () {};
-};
+}

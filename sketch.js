@@ -7,8 +7,12 @@ var blueBox;
 //var redBox;
 var greenBox;
 var barriers = [];
+var d = new Date();
+var n;
 
 function setup() {
+    n = 0;
+    counter = 0;
     frameRate(60);
     canvasWidth = (displayWidth - displayWidth / 80);
     canvasHeight = (displayHeight - displayHeight / 7);
@@ -23,6 +27,7 @@ function setup() {
 }
 
 function draw() {
+    n++;
     background(0);
     setCamera(70.0, 200.0, 120.0, 50.0, 50.0, 0.0, 0.0, 1.0, 0.0, 50, canvasHeight - canvasHeight * (.9), canvasHeight - canvasHeight * (.85), -PI / 6);
     setPlane(153, 172, 204, planeSize);
@@ -32,6 +37,9 @@ function draw() {
     //whiteBox.display();
     greenBox.move();
     greenBox.display();
+    for (i = 0; i < barriers.length; i++) {
+        barriers[i].collisions();
+    }
     //redBox.move();
     //redBox.display();
 }
@@ -60,7 +68,7 @@ function Bike(c, controls) {
         this.translationX = cornerValue;
         this.translationY = cornerValue;
         this.rads = 0;
-        this.xVelocity = 3;
+        this.xVelocity = -3;
         this.yVelocity = 0;
         barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
         this.turnCount = 0;
@@ -182,7 +190,6 @@ function Bike(c, controls) {
                 this.yVelocity = -3;
                 this.turnCount = this.turnCount++;
                 this.m = "verticle";
-
             }
             if (keyCode == 71 && this.m == "verticle") {
                 this.rads = PI;
@@ -237,7 +244,9 @@ function Bike(c, controls) {
                 this.m = "horizontal";
             }
         }
-        barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
+        if ((n % 11) == 0) {
+            barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads, 36, this.m));
+        }
         for (var i = 0; i < barriers.length; i++) {
             barriers[i].display();
         }
@@ -246,8 +255,11 @@ function Bike(c, controls) {
     }
 }
 
-function Barrier(x, y, c1, c2, c3, rads) {
+function Barrier(x, y, c1, c2, c3, rads, size, m) {
     //initial x and y position
+    this.positioning = m;
+    this.counter = 0;
+    this.s = size;
     this.x = x;
     this.y = y;
     //rotation
@@ -261,12 +273,34 @@ function Barrier(x, y, c1, c2, c3, rads) {
     this.vY;
     //length of barrier
     this.display = function () {
+        this.counter++;
         push();
         fill(this.c1, this.c2, this.c3);
         translate(this.x, this.y, 5);
         rotateZ(this.rads);
-        box(10, 10, 10);
+        box(this.s, 10, 10);
         pop();
     }
-    this.collisions = function () {};
+    this.collisions = function () {
+        if (this.positioning == "horizontal" && this.counter > 30) {
+            if (blueBox.translationY > this.y - 5 && blueBox.translationY < this.y + 5 && blueBox.translationX > this.x - 18 && blueBox.translationX < this.x + 18) {
+                console.log("jack is noob");
+            }
+        }
+        if (this.positioning == "verticle" && this.counter > 30) {
+            if (blueBox.translationY > this.y - 18 && blueBox.translationY < this.y + 18 && blueBox.translationX > this.x - 5 && blueBox.translationX < this.x + 5) {
+                console.log("jack is noob");
+            }
+        }
+        if (this.positioning == "horizontal" && this.counter > 30) {
+            if (greenBox.translationY > this.y - 5 && greenBox.translationY < this.y + 5 && greenBox.translationX > this.x - 18 && greenBox.translationX < this.x + 18) {
+                console.log("jack is noob");
+            }
+        }
+        if (this.positioning == "verticle" && this.counter > 30) {
+            if (greenBox.translationY > this.y - 18 && greenBox.translationY < this.y + 18 && greenBox.translationX > this.x - 5 && greenBox.translationX < this.x + 5) {
+                console.log("jack is noob");
+            }
+        }
+    }
 }

@@ -3,8 +3,6 @@ var canvasHeight;
 var planeSize;
 var cornerValue;
 var blueBox;
-//var whiteBox;
-//var redBox;
 var greenBox;
 var barriers = [];
 var d = new Date();
@@ -19,10 +17,7 @@ function setup() {
     planeSize = displayHeight * (.9);
     cornerValue = planeSize * (.4);
     createCanvas(canvasWidth, canvasHeight, WEBGL);
-    //controls options : wasd, ARROWS, ijkl, 8456
     blueBox = new Bike("Blue", 1);
-    //whiteBox = new Bike("White", 2);
-    //redBox = new Bike("Red", 3);
     greenBox = new Bike("Green", 4);
 }
 
@@ -33,15 +28,13 @@ function draw() {
     setPlane(153, 172, 204, planeSize);
     blueBox.move();
     blueBox.display();
-    //whiteBox.move();
-    //whiteBox.display();
+    blueBox.collisions();
     greenBox.move();
     greenBox.display();
+    greenBox.collisions();
     for (i = 0; i < barriers.length; i++) {
         barriers[i].collisions();
     }
-    //redBox.move();
-    //redBox.display();
 }
 
 function setCamera(eyeX, eyeY, eyeZ, ceneterX, centerY, centerZ, upX, upY, upZ, t1, t2, t3, rotation) {
@@ -109,7 +102,18 @@ function Bike(c, controls) {
         barriers.push(new Barrier(this.translationX, this.translationY, this.c1, this.c2, this.c3, this.rads));
         this.turnCount = 0;
     }
-    //CONTRUCTOR ///////////////////////////////////////////////////////////
+    this.collisions = function () {
+            if (this.translationX > planeSize/2 || this.translationX < (-1)*(planeSize/2) || this.translationY > planeSize/2 || this.translationY < (-1)*(planeSize/2)) {
+                //endgame code
+                //
+                //
+                //
+                //
+                //
+                //endgame code
+            }
+        }
+        //CONTRUCTOR ///////////////////////////////////////////////////////////
     this.display = function () {
         push();
         fill(this.c1, this.c2, this.c3);
@@ -250,8 +254,6 @@ function Bike(c, controls) {
         for (var i = 0; i < barriers.length; i++) {
             barriers[i].display();
         }
-        // this.collisions = function () {};
-        //  this.lose = function () {};
     }
 }
 
@@ -284,22 +286,45 @@ function Barrier(x, y, c1, c2, c3, rads, size, m) {
     this.collisions = function () {
         if (this.positioning == "horizontal" && this.counter > 30) {
             if (blueBox.translationY > this.y - 5 && blueBox.translationY < this.y + 5 && blueBox.translationX > this.x - 18 && blueBox.translationX < this.x + 18) {
-                console.log("jack is noob");
+                /*
+
+
+
+
+                */
             }
         }
         if (this.positioning == "verticle" && this.counter > 30) {
             if (blueBox.translationY > this.y - 18 && blueBox.translationY < this.y + 18 && blueBox.translationX > this.x - 5 && blueBox.translationX < this.x + 5) {
                 console.log("jack is noob");
+                 /*
+
+
+
+
+                */
             }
         }
         if (this.positioning == "horizontal" && this.counter > 30) {
             if (greenBox.translationY > this.y - 5 && greenBox.translationY < this.y + 5 && greenBox.translationX > this.x - 18 && greenBox.translationX < this.x + 18) {
                 console.log("jack is noob");
+                /*
+
+
+
+
+                */
             }
         }
         if (this.positioning == "verticle" && this.counter > 30) {
             if (greenBox.translationY > this.y - 18 && greenBox.translationY < this.y + 18 && greenBox.translationX > this.x - 5 && greenBox.translationX < this.x + 5) {
                 console.log("jack is noob");
+                /*
+
+
+
+
+                */
             }
         }
     }

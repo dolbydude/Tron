@@ -5,7 +5,6 @@ var cornerValue;
 var blueBox;
 var greenBox;
 var barriers = [];
-var d = new Date();
 var n;
 
 function setup() {

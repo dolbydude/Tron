@@ -296,7 +296,6 @@ function Barrier(x, y, c1, c2, c3, rads, size, m) {
         }
         if (this.positioning == "verticle" && this.counter > 30) {
             if (blueBox.translationY > this.y - 18 && blueBox.translationY < this.y + 18 && blueBox.translationX > this.x - 5 && blueBox.translationX < this.x + 5) {
-                console.log("jack is noob");
                  /*
 
 
@@ -307,7 +306,6 @@ function Barrier(x, y, c1, c2, c3, rads, size, m) {
         }
         if (this.positioning == "horizontal" && this.counter > 30) {
             if (greenBox.translationY > this.y - 5 && greenBox.translationY < this.y + 5 && greenBox.translationX > this.x - 18 && greenBox.translationX < this.x + 18) {
-                console.log("jack is noob");
                 /*
 
 
@@ -318,7 +316,6 @@ function Barrier(x, y, c1, c2, c3, rads, size, m) {
         }
         if (this.positioning == "verticle" && this.counter > 30) {
             if (greenBox.translationY > this.y - 18 && greenBox.translationY < this.y + 18 && greenBox.translationX > this.x - 5 && greenBox.translationX < this.x + 5) {
-                console.log("jack is noob");
                 /*
 
 

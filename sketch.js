@@ -289,6 +289,7 @@ function Barrier(x, y, c1, c2, c3, rads, size, m) {
                 /*
 
 
+                Endgame Code
 
 
                 */
@@ -299,6 +300,7 @@ function Barrier(x, y, c1, c2, c3, rads, size, m) {
                  /*
 
 
+                 Endgame Code
 
 
                 */
@@ -309,6 +311,7 @@ function Barrier(x, y, c1, c2, c3, rads, size, m) {
                 /*
 
 
+                Endgame Code
 
 
                 */
@@ -319,6 +322,7 @@ function Barrier(x, y, c1, c2, c3, rads, size, m) {
                 /*
 
 
+                Endgame Code
 
 
                 */
